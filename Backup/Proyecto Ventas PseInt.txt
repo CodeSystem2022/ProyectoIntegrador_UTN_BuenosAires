@@ -1,0 +1,50 @@
+Inicio - Cantidad vendedores
+
+menu
+1- Consulta productos
+2- Consulta vendedores
+3- Facturacion
+4- Comisiones a vendedor
+5- Consulta formas de pago
+
+1- 	Codigo
+	NombreInterno // Borrado
+	Descripcion
+	Precio
+	Stock
+
+2-	Codigo Vendedor
+	Nombre
+	Comision // Agregado 
+
+
+3-	Fecha
+	Comprador NOmbre
+	Iva ?
+	Vendedor nombre
+	Codigo
+	Cantidad
+	Forma de pago
+			Cantidad cuotas
+
+
+4-	Porcentaje de comision facturado del mes
+			vend 1
+			vend 2
+			vend 3
+	Consulta comision por vendedor
+
+5-	Efectivo -%20
+	Debito -%10
+	Tarjeta 
+		Cuotas 3 sin interes
+		Cuotas 6 +10%
+		Cuotas 12 +20%
+
+
+Matriz producto tiene q tener codigo, marca, modelo, precio, stock
+
+Matriz vendedor tiene q tener codigo, nombre, comision
+
+Matriz forma de pago codigo, detalle, recargo, descuento
+

@@ -1,0 +1,11 @@
+@startuml
+class dominio.Productos
+class dominio.Vendedores
+class dominio.main
+class java.util.ArrayList
+class java.util.List
+class java.util.Scanner
+dominio.main ..> java.util.ArrayList
+dominio.main ..> java.util.List
+dominio.main ..> java.util.Scanner
+@enduml
