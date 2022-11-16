@@ -1,5 +1,5 @@
 package dominio;
-        
+
 public class Productos {
 
     // Atributos
@@ -17,6 +17,7 @@ public class Productos {
         this.descripcion = descripcion;
         this.precio = precio;
         this.stock = stock;
+        System.out.println("Producto agregado con éxito!\n" + toString());
     }
 
     public int getCodigo() {
@@ -51,4 +52,12 @@ public class Productos {
         this.stock = stock;
     }
 
+    @Override
+    public String toString() {
+        return "----------"
+                + "\nCódigo producto: " + codigo
+                + "\nDescripción del producto: " + descripcion
+                + "\nPrecio unitario: $" + precio
+                + "\nStock disponible: " + stock;
+    }
 }

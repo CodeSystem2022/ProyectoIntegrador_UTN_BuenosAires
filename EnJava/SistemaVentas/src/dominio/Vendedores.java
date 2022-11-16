@@ -3,42 +3,55 @@ package dominio;
 public class Vendedores {
 
     // Atributos
-    private int Codigo;
-    private String NombreVendedor;
-    private float Comision;
+    private int codigo;
+    private String nombreVendedor;
+    private float comision;
 
     // Constructor
     public Vendedores() {
     }
 
-    public Vendedores(int Codigo, String NombreVendedor, float Comision) {
-        this.Codigo = Codigo;
-        this.NombreVendedor = NombreVendedor;
-        this.Comision = Comision;
+    public Vendedores(int codigo, String nombreVendedor, float comision) {
+        this.codigo = codigo;
+        this.nombreVendedor = nombreVendedor;
+        this.comision = comision;
     }
-
     public int getCodigo() {
-        return Codigo;
+        return codigo;
     }
 
-    public void setCodigo(int Codigo) {
-        this.Codigo = Codigo;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getNombreVendedor() {
-        return NombreVendedor;
+        return nombreVendedor;
     }
 
-    public void setNombreVendedor(String NombreVendedor) {
-        this.NombreVendedor = NombreVendedor;
+    public void setNombreVendedor(String nombreVendedor) {
+        this.nombreVendedor = nombreVendedor;
     }
 
     public float getComision() {
-        return Comision;
+        return comision;
     }
 
-    public void setComision(float Comision) {
-        this.Comision = Comision;
+    public void setComision(float comision) {
+        this.comision = comision;
     }
 
+    /*System.out.println("----------");
+                System.out.println("Codigo vendedor: " + vendedores.get(i).getCodigo());
+                System.out.println("Nombre vendedor: " + vendedores.get(i).getNombreVendedor());
+                System.out.println("Comision vendedor: $" + vendedores.get(i).getComision());
+    
+     */
+
+    @Override
+    public String toString() {
+        return "----------"
+                + "\nCódigo vendedor: " + codigo
+                + "\nNombre del vendedor: " + nombreVendedor
+                + "\nComisión actual: $" + comision;
+    }
 }

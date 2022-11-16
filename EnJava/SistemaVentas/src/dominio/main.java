@@ -6,69 +6,28 @@ import java.util.Scanner;
 
 public class main {
 
+    // Genera nuestros arrays de lista para almacenar informacion
+    public static List<Vendedores> vendedores = new ArrayList<>();
+    public static List<Productos> productos = new ArrayList<>();
+
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-        // Genera nuestros arrays de lista para almacenar informacion
-        List<Vendedores> vendedores = new ArrayList<>();
-        List<Productos> productos = new ArrayList<>();
         int opcionElegida;
         boolean programaCorriendo = true;
         do {
             //Llama a la funcion para mostrar las opciones del menú
             mostrarMenu();
-            System.out.print("Seleccione una opción: ");
+            //Espera que el usuario ingrese por teclado la opción 
             opcionElegida = Integer.parseInt(entrada.nextLine());
             switch (opcionElegida) {
-                case 1 -> {
-                    System.out.println("listando productos");
-                    if (productos.size() > 0) {
-                        for (int i = 0; i < productos.size(); i++) {
-                            System.out.println("----------");
-                            System.out.println("Codigo producto: " + productos.get(i).getCodigo());
-                            System.out.println("Descripcion producto: " + productos.get(i).getDescripcion());
-                            System.out.println("Precio producto: " + productos.get(i).getPrecio());
-                            System.out.println("Stock disponible del producto: " + productos.get(i).getStock());
-                        }
-                    } else {
-                        System.out.println("No existen productos ingresados todavia.");
-                    }
-                    pausar();
-                }
-                case 2 -> {
-                    System.out.println("Listando vendedores");
-                    if (vendedores.size() > 0) {
-                        for (int i = 0; i < vendedores.size(); i++) {
-                            System.out.println("----------");
-                            System.out.println("Codigo vendedor: " + vendedores.get(i).getCodigo());
-                            System.out.println("Nombre vendedor: " + vendedores.get(i).getNombreVendedor());
-                            System.out.println("Comision vendedor: $" + vendedores.get(i).getComision());
-                        }
-                    } else {
-                        System.out.println("No existen vendedores ingresados todavia.");
-                    }
-                    pausar();
-                }
-                case 3 -> {
-                    System.out.println("agregando productos");
-                    System.out.println("Ingrese codigo del producto: ");
-                    int codigo = Integer.parseInt(entrada.nextLine());
-                    System.out.println("Ingrese descripcion del producto: ");
-                    String descripcion = entrada.nextLine();
-                    System.out.println("Ingrese precio del producto: ");
-                    float precio = Float.parseFloat(entrada.nextLine());
-                    System.out.println("Ingrese stock inicial: ");
-                    int stock = Integer.parseInt(entrada.nextLine());
-                    productos.add(new Productos(codigo, descripcion, precio, stock));
-                    pausar();
-                }
-                case 4 -> {
-                    System.out.println("Agregando vendedores:");
-                    System.out.print("Ingrese nombre del nuevo vendedor: ");
-                    var contador = vendedores.size() + 1;
-                    String vendedor = entrada.nextLine();
-                    vendedores.add(new Vendedores(contador, vendedor, 0));
-                    pausar();
-                }
+                case 1 ->
+                    listarProductos();
+                case 2 ->
+                    listarVendedores();
+                case 3 ->
+                    agregarProductos();
+                case 4 ->
+                    agregarVendedores();
                 case 5 -> {
                     System.out.println("Generando venta");
                     pausar();
@@ -83,7 +42,6 @@ public class main {
                 }
             }
         } while (programaCorriendo);
-
     }
 
     public static void mostrarMenu() {
@@ -95,11 +53,61 @@ public class main {
         System.out.println("4 -> Agregar vendedores");
         System.out.println("5 -> Generar venta");
         System.out.println("9 -> Salir");
+        System.out.print("Seleccione una opción: ");
     }
 
     public static void pausar() {
-        Scanner entrada2 = new Scanner(System.in);
+        Scanner entrada = new Scanner(System.in);
         System.out.println("Presione ENTER para continuar...");
-        entrada2.nextLine();
+        entrada.nextLine();
+    }
+
+    public static void listarProductos() {
+        System.out.println("\nListando productos: ");
+        if (productos.size() > 0) {
+            for (int i = 0; i < productos.size(); i++) {
+                System.out.println(productos.get(i).toString());
+            }
+        } else {
+            System.out.println("No existen productos ingresados todavia.");
+        }
+        pausar();
+    }
+
+    public static void listarVendedores() {
+        System.out.println("\nListando vendedores:");
+        if (vendedores.size() > 0) {
+            for (int i = 0; i < vendedores.size(); i++) {
+                
+            }
+        } else {
+            System.out.println("No existen vendedores ingresados todavia.");
+        }
+        pausar();
+    }
+
+    public static void agregarProductos() {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("\nAgregando productos");
+        System.out.println("Ingrese codigo del producto: ");
+        int codigo = Integer.parseInt(entrada.nextLine());
+        System.out.println("Ingrese descripcion del producto: ");
+        String descripcion = entrada.nextLine();
+        System.out.println("Ingrese precio del producto: ");
+        float precio = Float.parseFloat(entrada.nextLine());
+        System.out.println("Ingrese stock inicial: ");
+        int stock = Integer.parseInt(entrada.nextLine());
+        productos.add(new Productos(codigo, descripcion, precio, stock));
+        pausar();
+    }
+
+    public static void agregarVendedores() {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("\nAgregando vendedores:");
+        System.out.print("Ingrese nombre del nuevo vendedor: ");
+        var contador = vendedores.size() + 1;
+        String vendedor = entrada.nextLine();
+        vendedores.add(new Vendedores(contador, vendedor, 0));
+        pausar();
     }
 }
