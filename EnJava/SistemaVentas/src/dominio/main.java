@@ -11,12 +11,13 @@ public class main {
         // Genera nuestros arrays de lista para almacenar informacion
         List<Vendedores> vendedores = new ArrayList<>();
         List<Productos> productos = new ArrayList<>();
+        int opcionElegida;
         boolean programaCorriendo = true;
         do {
             //Llama a la funcion para mostrar las opciones del menú
             mostrarMenu();
             System.out.print("Seleccione una opción: ");
-            int opcionElegida = Integer.parseInt(entrada.nextLine());
+            opcionElegida = Integer.parseInt(entrada.nextLine());
             switch (opcionElegida) {
                 case 1 -> {
                     System.out.println("listando productos");
@@ -50,13 +51,13 @@ public class main {
                 case 3 -> {
                     System.out.println("agregando productos");
                     System.out.println("Ingrese codigo del producto: ");
-                    int codigo = Integer.parseInt(entrada.next());
+                    int codigo = Integer.parseInt(entrada.nextLine());
                     System.out.println("Ingrese descripcion del producto: ");
-                    String descripcion = entrada.next();
+                    String descripcion = entrada.nextLine();
                     System.out.println("Ingrese precio del producto: ");
-                    float precio = Float.parseFloat(entrada.next());
+                    float precio = Float.parseFloat(entrada.nextLine());
                     System.out.println("Ingrese stock inicial: ");
-                    int stock = Integer.parseInt(entrada.next());
+                    int stock = Integer.parseInt(entrada.nextLine());
                     productos.add(new Productos(codigo, descripcion, precio, stock));
                     pausar();
                 }
@@ -64,7 +65,7 @@ public class main {
                     System.out.println("Agregando vendedores:");
                     System.out.print("Ingrese nombre del nuevo vendedor: ");
                     var contador = vendedores.size() + 1;
-                    String vendedor = entrada.next();
+                    String vendedor = entrada.nextLine();
                     vendedores.add(new Vendedores(contador, vendedor, 0));
                     pausar();
                 }
@@ -76,8 +77,10 @@ public class main {
                     System.out.println("Gracias por utilizar nuestro programa! \nUTN Bs As @ FRSR");
                     programaCorriendo = false;
                 }
-                default ->
+                default -> {
                     System.out.println("La opcion elegida no es valida");
+                    pausar();
+                }
             }
         } while (programaCorriendo);
 
@@ -95,8 +98,8 @@ public class main {
     }
 
     public static void pausar() {
-        Scanner entrada = new Scanner(System.in);
+        Scanner entrada2 = new Scanner(System.in);
         System.out.println("Presione ENTER para continuar...");
-        entrada.nextLine();
+        entrada2.nextLine();
     }
 }

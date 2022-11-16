@@ -1,5 +1,5 @@
 package dominio;
-
+        
 public class Productos {
 
     // Atributos
