@@ -78,7 +78,7 @@ public class main {
         System.out.println("\nListando vendedores:");
         if (vendedores.size() > 0) {
             for (int i = 0; i < vendedores.size(); i++) {
-                
+                System.out.println(vendedores.get(i).toString());
             }
         } else {
             System.out.println("No existen vendedores ingresados todavia.");
@@ -107,7 +107,7 @@ public class main {
         System.out.print("Ingrese nombre del nuevo vendedor: ");
         var contador = vendedores.size() + 1;
         String vendedor = entrada.nextLine();
-        vendedores.add(new Vendedores(contador, vendedor, 0));
+        vendedores.add(new Vendedores(vendedor, 0));
         pausar();
     }
 }

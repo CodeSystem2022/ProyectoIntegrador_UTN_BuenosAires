@@ -3,25 +3,27 @@ package dominio;
 public class Vendedores {
 
     // Atributos
-    private int codigo;
+    private static int contador;
     private String nombreVendedor;
+    private int codigoVendedor;
     private float comision;
 
     // Constructor
     public Vendedores() {
     }
 
-    public Vendedores(int codigo, String nombreVendedor, float comision) {
-        this.codigo = codigo;
+    public Vendedores(String nombreVendedor, float comision) {
+        Vendedores.contador++;
+        this.codigoVendedor = Vendedores.contador;
         this.nombreVendedor = nombreVendedor;
         this.comision = comision;
     }
     public int getCodigo() {
-        return codigo;
+        return codigoVendedor;
     }
 
     public void setCodigo(int codigo) {
-        this.codigo = codigo;
+        this.codigoVendedor = codigo;
     }
 
     public String getNombreVendedor() {
@@ -50,7 +52,7 @@ public class Vendedores {
     @Override
     public String toString() {
         return "----------"
-                + "\nCódigo vendedor: " + codigo
+                + "\nCódigo vendedor: " + codigoVendedor
                 + "\nNombre del vendedor: " + nombreVendedor
                 + "\nComisión actual: $" + comision;
     }
