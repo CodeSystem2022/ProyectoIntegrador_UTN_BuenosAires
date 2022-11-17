@@ -12,11 +12,11 @@ public class Vendedores {
     public Vendedores() {
     }
 
-    public Vendedores(String nombreVendedor, float comision) {
+    public Vendedores(String nombreVendedor) {
         Vendedores.contador++;
         this.codigoVendedor = Vendedores.contador;
         this.nombreVendedor = nombreVendedor;
-        this.comision = comision;
+        this.comision = 0;
     }
     public int getCodigo() {
         return codigoVendedor;
@@ -41,13 +41,6 @@ public class Vendedores {
     public void setComision(float comision) {
         this.comision = comision;
     }
-
-    /*System.out.println("----------");
-                System.out.println("Codigo vendedor: " + vendedores.get(i).getCodigo());
-                System.out.println("Nombre vendedor: " + vendedores.get(i).getNombreVendedor());
-                System.out.println("Comision vendedor: $" + vendedores.get(i).getComision());
-    
-     */
 
     @Override
     public String toString() {

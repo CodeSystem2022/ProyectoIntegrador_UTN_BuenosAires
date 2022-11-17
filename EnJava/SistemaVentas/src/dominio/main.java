@@ -15,10 +15,11 @@ public class main {
         int opcionElegida;
         boolean programaCorriendo = true;
         do {
-            //Llama a la funcion para mostrar las opciones del menú
+            // Llama a la funcion para mostrar las opciones del menú
             mostrarMenu();
-            //Espera que el usuario ingrese por teclado la opción 
-            opcionElegida = Integer.parseInt(entrada.nextLine());
+            // Espera que el usuario ingrese por teclado la opción mediante el 
+            // validador ingresarInt()
+            opcionElegida = ingresarInt();
             switch (opcionElegida) {
                 case 1 ->
                     listarProductos();
@@ -33,7 +34,7 @@ public class main {
                     pausar();
                 }
                 case 9 -> {
-                    System.out.println("Gracias por utilizar nuestro programa! \nUTN Bs As @ FRSR");
+                    System.out.println("Gracias por utilizar nuestro programa!\nUTN Bs As @ FRSR");
                     programaCorriendo = false;
                 }
                 default -> {
@@ -58,7 +59,7 @@ public class main {
 
     public static void pausar() {
         Scanner entrada = new Scanner(System.in);
-        System.out.println("Presione ENTER para continuar...");
+        System.out.println("\nPresione ENTER para continuar...");
         entrada.nextLine();
     }
 
@@ -87,27 +88,51 @@ public class main {
     }
 
     public static void agregarProductos() {
-        Scanner entrada = new Scanner(System.in);
         System.out.println("\nAgregando productos");
         System.out.println("Ingrese codigo del producto: ");
-        int codigo = Integer.parseInt(entrada.nextLine());
+        int codigo = ingresarInt();
         System.out.println("Ingrese descripcion del producto: ");
-        String descripcion = entrada.nextLine();
+        String descripcion = ingresarStr();
         System.out.println("Ingrese precio del producto: ");
-        float precio = Float.parseFloat(entrada.nextLine());
+        float precio = ingresarFloat();
         System.out.println("Ingrese stock inicial: ");
-        int stock = Integer.parseInt(entrada.nextLine());
+        int stock = ingresarInt();
         productos.add(new Productos(codigo, descripcion, precio, stock));
         pausar();
     }
 
     public static void agregarVendedores() {
-        Scanner entrada = new Scanner(System.in);
         System.out.println("\nAgregando vendedores:");
         System.out.print("Ingrese nombre del nuevo vendedor: ");
-        var contador = vendedores.size() + 1;
-        String vendedor = entrada.nextLine();
-        vendedores.add(new Vendedores(vendedor, 0));
+        vendedores.add(new Vendedores(ingresarStr()));
         pausar();
+    }
+
+    // Funciones para validar tipo de entrada necesitada
+    public static int ingresarInt() {
+        Scanner entradaInt = new Scanner(System.in);
+        while (!entradaInt.hasNextInt()) {
+            System.out.print("Corregir dato, debe ser de tipo entero: ");
+            entradaInt.next();
+        }
+        return entradaInt.nextInt();
+    }
+
+    public static float ingresarFloat() {
+        Scanner entradaFloat = new Scanner(System.in);
+        while (!entradaFloat.hasNextFloat()) {
+            System.out.print("Corregir dato, debe ser numérico: ");
+            entradaFloat.next();
+        }
+        return entradaFloat.nextFloat();
+    }
+
+    public static String ingresarStr() {
+        Scanner entradaStr = new Scanner(System.in);
+        while (!entradaStr.hasNext()) {
+            System.out.println("Debe ingresar un dato correcto: ");
+            entradaStr.next();
+        }
+        return entradaStr.next();
     }
 }
