@@ -135,4 +135,76 @@ public class main {
         }
         return entradaStr.next();
     }
+    
+    // Funcion para generar ventas
+    public static void generarVenta(){
+        int nroVendedor = 1,nroProducto = 1, productoElegido = 1, vendedorElegido = 1;
+        int cantProductos = 0;
+        boolean esVendedorGenerico = false;
+       
+        System.out.println("Seleccione un vendedor: ");
+        if(vendedores.isEmpty()){
+            System.out.println("No existen vendedores cargados, se generará una venta sin comisionar");
+            System.out.println("");
+            esVendedorGenerico = true;
+            pausar();
+        }
+        else{
+            for (Vendedores vendedor:vendedores){
+                System.out.println(nroVendedor+vendedor.toString());
+                nroVendedor += 1;
+            }
+            vendedorElegido = ingresarInt();
+        }
+        //Elige el vendedor de la lista
+        System.out.println("------------------------------------------------");
+        System.out.println("Seleccione un producto con stock disponible para la compra");
+        
+        //Controla el stock, que no sea 0 y que hayan productos cargados
+        if(productos.isEmpty()){
+            System.out.println("No existen productos cargados");
+            System.out.println("");
+            pausar();
+        }
+        else{
+            do{
+                for (Productos producto:productos){
+                    System.out.println(nroProducto+producto.toString());  
+                    nroProducto += 1;
+                }
+                productoElegido = ingresarInt();
+                if(productos.get(productoElegido-1).getStock() == 0){
+                    System.out.println("Error! No puede seleccionar un producto sin stock..");
+                    System.out.println(productos.get(productoElegido-1).toString());
+                    System.out.println("Por favor elija otro");      
+                }
+                nroProducto = 1;
+            }while(productos.get(productoElegido-1).getStock() == 0);
+            
+            System.out.println("------------------------------------------------");
+            System.out.println("Cantidad de "+ productos.get(productoElegido-1).getDescripcion()+
+                        "(s) quiere comprar? Disponibles "+productos.get(productoElegido-1).getStock()); 
+            
+            cantProductos = ingresarInt();
+            if(cantProductos > productos.get(productoElegido-1).getStock())
+		do{
+                    System.out.println("No puede facturar"+cantProductos+" unidades del producto seleccionado");
+                    System.out.println("Ingrese la cantidad deseada");
+                    cantProductos = ingresarInt();
+                    
+                }while(cantProductos <= productos.get(productoElegido-1).getStock());
+            
+            //Se descuenta la cantidad de productos vendidos en la matriz
+            productos.get(productoElegido-1).setStock(productos.get(productoElegido-1).getStock()-cantProductos);
+            
+            //suma la comision si tiene vendedor asignado
+            if(!esVendedorGenerico) 
+		vendedores.get(nroVendedor-1).setComision((float) ((vendedores.get(nroVendedor).getComision()*cantProductos)*0.3));
+            
+            //Imprime comprobante de compra con muchos datos importantes
+            System.out.println("Gracias por comprar en nuestra tienda!!");
+            System.out.println("------------------------------------------------");
+            pausar();
+        } 
+    }
 }
