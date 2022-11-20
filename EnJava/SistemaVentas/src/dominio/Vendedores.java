@@ -3,10 +3,10 @@ package dominio;
 public class Vendedores {
 
     // Atributos
-    private static int contador;
-    private String nombreVendedor;
-    private int codigoVendedor;
-    private float comision;
+    protected static int contador;
+    protected String nombreVendedor;
+    protected int codigoVendedor;
+    protected float comision;
 
     // Constructor
     public Vendedores() {
@@ -41,7 +41,8 @@ public class Vendedores {
     public void setComision(float comision) {
         this.comision = comision;
     }
-
+    
+    
     @Override
     public String toString() {
         return "----------"

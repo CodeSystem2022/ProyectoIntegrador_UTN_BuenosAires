@@ -11,7 +11,6 @@ public class main {
     public static List<Productos> productos = new ArrayList<>();
 
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
         int opcionElegida;
         boolean programaCorriendo = true;
         do {
@@ -30,7 +29,10 @@ public class main {
                 case 4 ->
                     agregarVendedores();
                 case 5 -> {
+<<<<<<< Updated upstream
                     System.out.println("Generando venta");
+=======
+>>>>>>> Stashed changes
                     generarVenta();
                 }
                 case 9 -> {
@@ -135,6 +137,7 @@ public class main {
         }
         return entradaStr.next();
     }
+<<<<<<< Updated upstream
     
     // Funcion para generar ventas
     public static void generarVenta(){
@@ -216,10 +219,100 @@ public class main {
                         .getPrecio()*cantProductos)*0.3));
             }
                        
+=======
+
+    // Funcion para generar ventas
+    public static void generarVenta() {
+        int prodElegido = 1, cantProductos = 0;
+        int nroVendedor = 1, nroProducto = 1;
+        int vendElegido = 1, contStock = 0;
+        boolean esVendedorCargado = true;
+
+        //Se verifica si alguno de los productos cargados tiene stock
+        for (Productos producto : productos) {
+            if (producto.getStock() > 0) {
+                contStock++;
+            }
+        }
+
+        //Controla el stock, que no sea 0 y que hayan productos cargados
+        if (!productos.isEmpty() && contStock > 0) {
+
+            //En caso de haber productos con stock, se muestra el listado
+            System.out.println("------------------------------------------------");
+            System.out.println("Seleccione un producto para la compra");
+            // Se muestra la lista de productos cargados y se elige uno
+            for (Productos producto : productos) {
+                System.out.println((nroProducto) + producto.toString());
+                nroProducto += 1;
+            }
+            prodElegido = ingresarInt();
+
+            //Controla que el producto seleccionado este dentro de rango 
+            while ((prodElegido > productos.size() || prodElegido <= 0)
+                    || (productos.get(prodElegido - 1).getStock() == 0)) {
+                //if (productos.get(prodElegido - 1).getStock() == 0) {
+                //} else {
+                    System.out.println("Error, numero fuera de rango o con stock 0");
+                //}
+                System.out.println("Volver a ingresa numero de producto: ");
+                prodElegido = ingresarInt();
+            }
+
+            // Se muestra la cantidad de productos en stock
+            System.out.println("------------------------------------------------");
+            System.out.println("Cantidad de "
+                    + productos.get(prodElegido - 1).getDescripcion()
+                    + "(s) quiere comprar? Disponibles "
+                    + productos.get(prodElegido - 1).getStock());
+
+            cantProductos = ingresarInt();
+
+            // En caso de que la cantidad de productos elegidos sea mayor al stock
+            if (cantProductos > productos.get(prodElegido - 1).getStock()) {
+                do {
+                    System.out.println("No puede facturar " + cantProductos
+                            + " unidades del producto seleccionado");
+                    System.out.println("Ingrese la cantidad deseada");
+                    cantProductos = ingresarInt();
+
+                } while (cantProductos > productos.get(prodElegido - 1).getStock());
+            }
+
+            //Se descuenta la cantidad de productos vendidos en la matriz
+            productos.get(prodElegido - 1).setStock(productos.get(prodElegido - 1)
+                    .getStock() - cantProductos);
+
+            //Elige el vendedor de la lista si es que hay 
+            if (vendedores.isEmpty()) {
+                System.out.println("No existen vendedores cargados, "
+                        + "se generará una venta sin comisionar");
+                System.out.println("");
+                esVendedorCargado = false;
+            } else {
+                System.out.println("Seleccione un vendedor: ");
+                for (Vendedores vendedor : vendedores) {
+                    System.out.println(nroVendedor + vendedor.toString());
+                    nroVendedor += 1;
+                }
+                vendElegido = ingresarInt();
+
+            }
+            pausar();
+
+            //suma la comision si tiene vendedor asignado
+            if (esVendedorCargado) {
+                vendedores.get(vendElegido - 1)
+                        .setComision((float) ((productos.get(prodElegido - 1)
+                                .getPrecio() * cantProductos) * 0.3));
+            }
+
+>>>>>>> Stashed changes
             //Imprime comprobante de compra con muchos datos importantes
             System.out.println("Gracias por comprar en nuestra tienda!!");
             System.out.println("------------------------------------------------");
             System.out.println("Detalle de su compra: ");
+<<<<<<< Updated upstream
             System.out.println(productos.get(prodElegido-1).toString());
             System.out.println("[****] Valor final de la compra: $"
                 + productos.get(prodElegido-1).getPrecio() * cantProductos);
@@ -236,5 +329,26 @@ public class main {
             }
             pausar();
         } 
+=======
+            System.out.println(productos.get(prodElegido - 1).mostrarDetalle());
+            System.out.println("[****] Valor final de la compra: $"
+                    + productos.get(prodElegido - 1).getPrecio() * cantProductos);
+
+            // En caso de tener vendedor asignado, se imprimen sus datos.
+            if (esVendedorCargado) {
+                System.out.println(vendedores.get(vendElegido - 1).toString());
+                System.out.println("Comision que genera la venta (30% de la compra): $"
+                        + vendedores.get(vendElegido - 1).getComision());
+            } else {
+                System.out.println("[****] Vendedor generico no comisiona venta. ");
+            }
+            pausar();
+
+        } else {
+            System.out.println("No hay datos suficientes para ejecutar la venta");
+            System.out.println("");
+            pausar();
+        }
+>>>>>>> Stashed changes
     }
 }

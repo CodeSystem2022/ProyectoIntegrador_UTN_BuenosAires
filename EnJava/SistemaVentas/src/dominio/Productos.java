@@ -51,6 +51,13 @@ public class Productos {
     public void setStock(int stock) {
         this.stock = stock;
     }
+    
+    public String mostrarDetalle(){
+         return "----------"
+                + "\nCódigo producto: " + codigo
+                + "\nDescripción del producto: " + descripcion
+                + "\nPrecio unitario: $" + precio;
+    }
 
     @Override
     public String toString() {
