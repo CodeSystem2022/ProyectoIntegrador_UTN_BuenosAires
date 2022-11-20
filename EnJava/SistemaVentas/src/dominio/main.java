@@ -31,7 +31,7 @@ public class main {
                     agregarVendedores();
                 case 5 -> {
                     System.out.println("Generando venta");
-                    pausar();
+                    generarVenta();
                 }
                 case 9 -> {
                     System.out.println("Gracias por utilizar nuestro programa!\nUTN Bs As @ FRSR");
