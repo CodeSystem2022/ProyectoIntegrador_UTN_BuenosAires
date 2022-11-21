@@ -3,10 +3,10 @@ package dominio;
 public class Vendedores {
 
     // Atributos
-    protected static int contador;
-    protected String nombreVendedor;
-    protected int codigoVendedor;
-    protected float comision;
+    private static int contador;
+    private String nombreVendedor;
+    private int codigoVendedor;
+    private float comision;
 
     // Constructor
     public Vendedores() {
