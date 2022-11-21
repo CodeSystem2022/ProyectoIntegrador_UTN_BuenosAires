@@ -28,9 +28,8 @@ public class main {
                     agregarProductos();
                 case 4 ->
                     agregarVendedores();
-                case 5 -> {
+                case 5 ->
                     generarVenta();
-                }
                 case 9 -> {
                     System.out.println("Gracias por utilizar nuestro programa!\nUTN Bs As @ FRSR");
                     programaCorriendo = false;
@@ -136,7 +135,7 @@ public class main {
 
     //Funcion para generar ventas
     public static void generarVenta() {
-        int prodElegido , cantProductos ;
+        int prodElegido, cantProductos;
         int nroVendedor = 1, nroProducto = 1;
         int vendElegido = 1, contStock = 0;
         boolean esVendedorCargado = true;
@@ -179,12 +178,14 @@ public class main {
             System.out.println("Indicar la cantidad de "
                     + productos.get(prodElegido - 1).getDescripcion()
                     + "(s) a comprar? Disponibles "
-                    + productos.get(prodElegido - 1).getStock()+": ");
+                    + productos.get(prodElegido - 1).getStock() + ": ");
 
             cantProductos = ingresarInt();
 
             // En caso de que la cantidad de productos elegidos sea mayor al stock
-            if (cantProductos > productos.get(prodElegido - 1).getStock()) {
+            // o sea menor o igual a 0
+            if (cantProductos > productos.get(prodElegido - 1).getStock()
+                    || cantProductos <= 0) {
                 do {
                     System.out.println("No puede facturar " + cantProductos
                             + " unidades del producto seleccionado");
@@ -215,8 +216,8 @@ public class main {
             }
 
             //Se verifica que el vendedor seleccionado sea el correcto
-            while ((vendElegido > vendedores.size() || vendElegido <= 0) && 
-                    esVendedorCargado) {
+            while ((vendElegido > vendedores.size() || vendElegido <= 0)
+                    && esVendedorCargado) {
                 System.out.println("Ese numero de vendedor no se encuentra");
                 System.out.println("Porfavor ingresar otro vendedor: ");
                 vendElegido = ingresarInt();
@@ -247,7 +248,7 @@ public class main {
             }
         } else {
             System.out.println("");
-            System.out.println("No hay datos suficientes para ejecutar la venta"); 
+            System.out.println("No hay datos suficientes para ejecutar la venta");
         }
         pausar();
     }
