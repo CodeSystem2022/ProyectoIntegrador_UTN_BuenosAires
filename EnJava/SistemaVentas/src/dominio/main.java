@@ -29,9 +29,6 @@ public class main {
                 case 4 ->
                     agregarVendedores();
                 case 5 -> {
-
-                    System.out.println("Generando venta");
-
                     generarVenta();
                 }
                 case 9 -> {
