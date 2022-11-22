@@ -1,0 +1,13 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>310</x><y>40</y><w>100</w><h>30</h></coordinates><panel_attributes>Main
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>50</x><y>200</y><w>210</w><h>100</h></coordinates><panel_attributes>Productos
+--
+-Código : int
+-Descripción : string
+-Precio : float
+-Stock : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>210</y><w>210</w><h>100</h></coordinates><panel_attributes>Vendedores
+--
+-Contador : int
+-NombreVendedor : string
+-CódigoVendedor : int
+-Comisión : float
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>60</y><w>140</w><h>170</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;120;150</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>60</y><w>210</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>190;10;10;140</additional_attributes></element></diagram>
