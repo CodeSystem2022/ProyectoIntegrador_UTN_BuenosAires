@@ -192,7 +192,8 @@ public class main {
                     System.out.println("Ingrese la cantidad deseada: ");
                     cantProductos = ingresarInt();
 
-                } while (cantProductos > productos.get(prodElegido - 1).getStock());
+                } while (cantProductos > productos.get(prodElegido - 1).getStock()
+                    || cantProductos <= 0);
             }
             System.out.println("");
 
