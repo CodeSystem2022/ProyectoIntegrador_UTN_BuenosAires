@@ -172,19 +172,20 @@ public class main {
                 System.out.println("Porfavor ingresar otro producto: ");
                 prodElegido = ingresarInt();
             }
+            prodElegido -= 1;
 
             // Se muestra la cantidad de productos en stock
             System.out.println("------------------------------------------------");
             System.out.println("Indicar la cantidad de "
-                    + productos.get(prodElegido - 1).getDescripcion()
+                    + productos.get(prodElegido).getDescripcion()
                     + "(s) a comprar? Disponibles "
-                    + productos.get(prodElegido - 1).getStock() + ": ");
+                    + productos.get(prodElegido).getStock() + ": ");
 
             cantProductos = ingresarInt();
 
             // En caso de que la cantidad de productos elegidos sea mayor al stock
             // o sea menor o igual a 0
-            if (cantProductos > productos.get(prodElegido - 1).getStock()
+            if (cantProductos > productos.get(prodElegido).getStock()
                     || cantProductos <= 0) {
                 do {
                     System.out.println("No puede facturar " + cantProductos
@@ -192,13 +193,13 @@ public class main {
                     System.out.println("Ingrese la cantidad deseada: ");
                     cantProductos = ingresarInt();
 
-                } while (cantProductos > productos.get(prodElegido - 1).getStock()
+                } while (cantProductos > productos.get(prodElegido).getStock()
                     || cantProductos <= 0);
             }
             System.out.println("");
 
             //Se descuenta la cantidad de productos vendidos en la matriz
-            productos.get(prodElegido - 1).setStock(productos.get(prodElegido - 1)
+            productos.get(prodElegido).setStock(productos.get(prodElegido)
                     .getStock() - cantProductos);
 
             //Elige el vendedor de la lista si es que hay 
@@ -223,34 +224,43 @@ public class main {
                 System.out.println("Porfavor ingresar otro vendedor: ");
                 vendElegido = ingresarInt();
             }
+            vendElegido -=1;
+            
+            //Se llama a la funcion "imprimirComprobante"
+            imprimirComprobante(prodElegido,cantProductos,cantProductos,
+                    vendElegido,esVendedorCargado);
 
-            //Imprime comprobante de compra con muchos datos importantes
-            System.out.println("Gracias por comprar en nuestra tienda!!");
-            System.out.println("------------------------------------------------");
-            System.out.println("Detalle de su compra: ");
-            System.out.println(productos.get(prodElegido - 1).mostrarDetalle());
-            System.out.println("Valor final de la compra: $"
-                    + productos.get(prodElegido - 1).getPrecio() * cantProductos);
-
-            //suma la comision si tiene vendedor asignado
-            if (esVendedorCargado) {
-                vendedores.get(vendElegido - 1).
-                        setComision((float) ((productos.get(prodElegido - 1)
-                                .getPrecio() * cantProductos) * 0.3));
-            }
-
-            // En caso de tener vendedor asignado, se imprimen sus datos.
-            if (esVendedorCargado) {
-                System.out.println(vendedores.get(vendElegido - 1).toString());
-                System.out.println("Comision que genera la venta (30% de la compra): $"
-                        + vendedores.get(vendElegido - 1).getComision());
-            } else {
-                System.out.println("Vendedor generico no comisiona venta. ");
-            }
         } else {
             System.out.println("");
             System.out.println("No hay datos suficientes para ejecutar la venta");
         }
         pausar();
+    }
+    
+    public static void imprimirComprobante(int prodElegido,int cantProductos,
+            int cantProducto,int vendElegido, boolean esVendedorCargado) {
+        //Imprime comprobante de compra con muchos datos importantes
+        System.out.println("Gracias por comprar en nuestra tienda!!");
+        System.out.println("------------------------------------------------");
+        System.out.println("Detalle de su compra: ");
+        System.out.println(productos.get(prodElegido).mostrarDetalle());
+        System.out.println("Valor final de la compra: $"
+                + productos.get(prodElegido).getPrecio() * cantProductos);
+
+        //suma la comision si tiene vendedor asignado
+        if (esVendedorCargado) {
+            vendedores.get(vendElegido).
+                    setComision((float) ((productos.get(prodElegido)
+                            .getPrecio() * cantProductos) * 0.3));
+        }
+
+        // En caso de tener vendedor asignado, se imprimen sus datos.
+        if (esVendedorCargado) {
+            System.out.println(vendedores.get(vendElegido).toString());
+            System.out.println("Comision que genera la venta (30% de la compra): $"
+                    + vendedores.get(vendElegido).getComision());
+        } else {
+            System.out.println("Vendedor generico no comisiona venta. ");
+        }
     }
 }
