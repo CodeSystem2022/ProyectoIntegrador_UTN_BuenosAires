@@ -35,7 +35,7 @@
       <x>550</x>
       <y>260</y>
       <w>210</w>
-      <h>140</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes>Vendedor
 --
@@ -194,11 +194,11 @@ Responsabilities
     <id>Relation</id>
     <coordinates>
       <x>320</x>
-      <y>390</y>
+      <y>380</y>
       <w>350</w>
-      <h>120</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;100.0;330.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;330.0;10.0</additional_attributes>
   </element>
 </diagram>
